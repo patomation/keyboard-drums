@@ -1,22 +1,18 @@
-USAGE:
+#Getting Started
 
-Run Server With hot module reloading.
+Install dependencies
 ```
-webpack-dev-server --hot --inline
+npm install
 ```
-or
+
+#Usage:
+
+1. Run Server With hot module reloading.
 ```
 npm start
 ```
 
-Package files
+2. Package files
 ```
-webpack
+npm run build
 ```
-
-Save NPM Dependencies
-```
-npm shrinkwrap
-```
-creates npm-shrinkwrap.json file.
-https://docs.npmjs.com/cli/shrinkwrap
