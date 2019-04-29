@@ -1,7 +1,8 @@
 {
-  "name": "react-webpack-boilerplate",
+  "name": "kayboard-drums",
   "version": "0.0.1",
   "description": "USAGE:",
+  "author":"Patrick Kelly",
   "private": true,
   "main": "webpack.config.js",
   "dependencies": {

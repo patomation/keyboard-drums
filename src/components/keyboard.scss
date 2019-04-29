@@ -1,0 +1,104 @@
+$isabelline: #f2efea;
+$coral:      #fc7753;
+$turquoise:   #66d7d1;
+$arsenic:    #403d58;
+$straw:      #dbd56e;
+
+$primary:       $turquoise;
+$secondary:     $straw;
+$bg: 	        	$coral;
+$dark: 	      	$arsenic;
+$light:       	$isabelline;
+
+$body-bg: $bg;
+
+$disabled-bg: $dark;
+$disabled-color: $coral;
+
+$active-bg: $secondary;
+$active-color: $primary;
+
+$key-bg: darken($primary, 30%);
+$key-color: $secondary;
+
+$keyboard-bg: rgba(0,0,0,0);
+$keyboard-color: #000000;
+
+::selection{background-color:none; color:inherit;}
+
+/* Verticall align */
+html{height: 100%;}
+body{height: 100%;}
+#index{height: 100%;}
+.container{height: 100%;}
+.app-container{height: 100%;}
+.keyboard{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+body{
+  background-color: $body-bg;
+}
+
+.disabled{
+  background-color: $disabled-bg !important;
+  color: $disabled-color !important;
+  box-shadow:0px 0px 0px !important;
+}
+
+.active{
+  background-color: $active-bg !important;
+  color: $active-color !important;
+}
+
+.keyboard{
+  width:800px; height: 250px;
+  background-color: $keyboard-bg;
+  margin: 0px auto;
+  border-radius: 10px;
+  padding: 30px;
+  color: $keyboard-color;
+}
+
+.key{
+  width: 40px; height:40px;
+  display:block;
+  background-color: $key-bg;
+  color: $key-color;
+  text-align: left;
+  padding-left: 8px;
+  line-height: 29px;
+  border-radius:2px;
+  float:left; margin-left: 2px;
+  margin-bottom:2px;
+  cursor: pointer;
+  transition: box-shadow 0.7s ease;
+}
+
+.main{width:650px; height:260px; float:left;}
+.side{width:150px; height:260px; float:left;}
+
+.function{font-size: 12px; width:30px; height:30px; margin-bottom:15px;}
+.small{font-size:10px; line-height:13px; text-align: center; padding:0 5px; padding-top:2px; height:28px !important;}
+.space1{margin-right: 43px !important;}
+.space2{margin-right: 25px !important;}
+.dual {font-size: 14px; line-height: 20px; width:30px; }
+.backspace {width:84px; font-size: 12px;}
+.tab {width: 50px; line-height: 40px; font-size:13px;}
+.letter{width:30px;}
+.slash{width:64px;}
+.caps{width:70px; font-size:12px; line-height:18px;}
+.enter{width:92px; line-height:40px; text-align: center; padding-left:0;}
+.shift.left{width: 90px;line-height: 40px; font-size:13px;}
+.shift.right{width: 104px;line-height: 40px; font-size:13px;}
+.ctrl{width: 50px; line-height: 40px; font-size:13px;}
+.space{width:234px;}
+.arrows{position:relative; top:42px;}
+.sec-func .key{width: 32px; font-size:10px; text-align:left; line-height:40px; float:left;}
+.sec-func div.dual{line-height:20px;}
+.arrows .key{text-align: center; padding-left: 7px; margin-left:2px;}
+.hidden{visibility: hidden;}
+
+.key:hover{box-shadow:0px 0px 10px $secondary; z-index:1000;}
