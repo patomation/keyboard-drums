@@ -3,8 +3,12 @@ import ReactDOM from "react-dom";
 
 import style from "./sass/main.scss";
 
+import Keyboard from './components/keyboard.js';
+
 const Index = () => {
-  return <div>Hello React!</div>;
+  return <div className='container'>
+   <Keyboard />
+  </div>;
 };
 
 ReactDOM.render(<Index />, document.getElementById("index"));
