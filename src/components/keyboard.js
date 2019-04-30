@@ -28,26 +28,41 @@ import various10 from '../sounds/various/Stab_3.mp3';
 import various11 from '../sounds/various/Stab_4.mp3';
 import various12 from '../sounds/various/Stab_5.mp3';
 
-import snare1 from '../sounds/snares/EBB_Snare_1.mp3';
-import snare2 from '../sounds/snares/EBB_Snare_2.mp3';
-import snare3 from '../sounds/snares/EBB_Snare_3.mp3';
-import snare4 from '../sounds/snares/EBB_Snare_4.mp3';
-import snare5 from '../sounds/snares/EBB_Snare_5.mp3';
-import snare6 from '../sounds/snares/EBB_Snare_6.mp3';
-import snare7 from '../sounds/snares/EBB_Snare_7.mp3';
-import snare8 from '../sounds/snares/EBB_Snare_8.mp3';
-import snare9 from '../sounds/snares/EBB_Snare_9.mp3';
-import snare10 from '../sounds/snares/EBB_Snare_10.mp3';
+import snare1 from '../sounds/lofi-chill/snares/540_snare.mp3';
+import snare2 from '../sounds/lofi-chill/snares/awkward_snare.mp3';
+import snare3 from '../sounds/lofi-chill/snares/badguy_snare.mp3';
+import snare4 from '../sounds/lofi-chill/snares/bappa_snare.mp3';
 
-import kick1 from '../sounds/kicks/EBB_Kick_1.mp3';
-import kick2 from '../sounds/kicks/EBB_Kick_2.mp3';
-import kick3 from '../sounds/kicks/EBB_Kick_3.mp3';
-import kick4 from '../sounds/kicks/EBB_Kick_4.mp3';
-import kick5 from '../sounds/kicks/EBB_Kick_5.mp3';
-import kick6 from '../sounds/kicks/EBB_Kick_6.mp3';
-import kick7 from '../sounds/kicks/EBB_Kick_7.mp3';
-import kick8 from '../sounds/kicks/EBB_Kick_8.mp3';
-import kick9 from '../sounds/kicks/EBB_Kick_9.mp3';
+import kick1 from '../sounds/lofi-chill/kicks/540_kick.mp3';
+import kick2 from '../sounds/lofi-chill/kicks/cala_kick.mp3';
+import kick3 from '../sounds/lofi-chill/kicks/downhill_kick.mp3';
+import kick4 from '../sounds/lofi-chill/kicks/eevee_kick.mp3';
+
+import hat1 from '../sounds/lofi-chill/hats/540_hat.mp3';
+import hat2 from '../sounds/lofi-chill/hats/abisal_hat.mp3';
+import hat3 from '../sounds/lofi-chill/hats/anti_hat.mp3';
+import hat4 from '../sounds/lofi-chill/hats/brotherly_hat.mp3';
+
+import oneshot1 from '../sounds/various/Radar_Boop.mp3';
+import oneshot2 from '../sounds/various/Roll_1.mp3';
+import oneshot3 from '../sounds/various/Roll_2.mp3';
+import oneshot4 from '../sounds/various/Rock_Dance.mp3';
+import oneshot5 from '../sounds/various/Scratch_1.mp3';
+import oneshot6 from '../sounds/various/Scratch_2.mp3';
+
+import vox1 from '../sounds/lofi-chill/vox/dilla_siren.mp3';
+import vox2 from '../sounds/lofi-chill/vox/insert.mp3';
+import vox3 from '../sounds/lofi-chill/vox/paah.mp3';
+import vox4 from '../sounds/lofi-chill/vox/token.mp3';
+import vox5 from '../sounds/lofi-chill/vox/uhh.mp3';
+import vox6 from '../sounds/lofi-chill/vox/yo.mp3';
+
+import chord1 from '../sounds/chords/epiano/C_epiano.mp3';
+import chord2 from '../sounds/chords/epiano/Cm_epiano.mp3';
+import chord3 from '../sounds/chords/epiano/Em_epiano.mp3';
+import chord4 from '../sounds/chords/epiano/Fsharp_epiano.mp3';
+import chord5 from '../sounds/chords/epiano/G_epiano.mp3';
+import chord6 from '../sounds/chords/epiano/Bdim_epiano.mp3';
 
 // Make object class
 class keyAudio {
@@ -85,12 +100,12 @@ class keyAudio {
 }
 
 const keyAudios = {
-  '1': new keyAudio('1', vocal1),
-  '2': new keyAudio('1', vocal2),
-  '3': new keyAudio('1', vocal3),
-  '4': new keyAudio('1', vocal4),
-  '5': new keyAudio('1', vocal5),
-  '6': new keyAudio('1', vocal6),
+  '1': new keyAudio('1', chord1),
+  '2': new keyAudio('1', chord2),
+  '3': new keyAudio('1', chord3),
+  '4': new keyAudio('1', chord4),
+  '5': new keyAudio('1', chord5),
+  '6': new keyAudio('1', chord6),
   '7': new keyAudio('1', vocal7),
   '8': new keyAudio('1', vocal8),
   '9': new keyAudio('1', vocal9),
@@ -111,26 +126,26 @@ const keyAudios = {
   '[': new keyAudio('q', various11),
   ']': new keyAudio('q', various12),
 
-  a: new keyAudio('q', snare1),
-  s: new keyAudio('q', snare2),
-  d: new keyAudio('q', snare3),
-  f: new keyAudio('q', snare4),
-  g: new keyAudio('q', snare5),
-  h: new keyAudio('q', snare6),
-  j: new keyAudio('q', snare7),
-  k: new keyAudio('q', snare8),
-  l: new keyAudio('q', snare9),
-  ';': new keyAudio('q', snare10),
+  a: new keyAudio('q', vox1),
+  s: new keyAudio('q', vox2),
+  d: new keyAudio('q', hat1),
+  f: new keyAudio('q', hat2),
+  g: new keyAudio('q', vox3),
+  h: new keyAudio('q', vox4),
+  j: new keyAudio('q', hat3),
+  k: new keyAudio('q', hat4),
+  l: new keyAudio('q', vox5),
+  ';': new keyAudio('q', vox6),
 
   z: new keyAudio('q', kick1),
   x: new keyAudio('q', kick2),
-  c: new keyAudio('q', kick3),
-  v: new keyAudio('q', kick4),
-  b: new keyAudio('q', kick5),
-  n: new keyAudio('q', kick6),
-  m: new keyAudio('q', kick7),
-  ',': new keyAudio('q', kick8),
-  '.': new keyAudio('q', kick9),
+  c: new keyAudio('q', snare1),
+  v: new keyAudio('q', snare2),
+  b: new keyAudio('q', kick3),
+  n: new keyAudio('q', kick4),
+  m: new keyAudio('q', snare3),
+  ',': new keyAudio('q', snare4),
+  '.': new keyAudio('q', various2),
 };
 
 class Keyboard extends React.Component {
