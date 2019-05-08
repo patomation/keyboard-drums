@@ -7,6 +7,7 @@ import Keyboard from './components/keyboard.js';
 
 const Index = () => {
   return <div className='container'>
+   <h1>AdVolKit</h1>
    <Keyboard />
   </div>;
 };
