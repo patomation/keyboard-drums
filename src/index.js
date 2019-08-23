@@ -1,14 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 
 import style from "./sass/main.scss";
 
-import Keyboard from './components/keyboard.js';
+import App from './App.js';
 
-const Index = () => {
-  return <div className='container'>
-   <Keyboard />
-  </div>;
-};
+if (module && module.hot) {
+  module.hot.accept();
+}
 
-ReactDOM.render(<Index />, document.getElementById("index"));
+render(
+  <App />,
+  document.getElementById("root")
+);
