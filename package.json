@@ -10,7 +10,7 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "@patomation/react-keyboard": "^1.0.0",
+    "@patomation/react-keyboard": "^1.0.1",
     "@patomation/react-ui-components": "^1.6.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
