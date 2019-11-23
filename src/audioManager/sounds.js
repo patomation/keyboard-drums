@@ -1,0 +1,2 @@
+// Sound storage
+export default {}
