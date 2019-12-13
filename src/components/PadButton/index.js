@@ -101,7 +101,7 @@ const PadButton = ({
           }} /> : null }
 
       <Button
-        // active={active}
+        active={active}
         enabled={enabled}
         onDown={() => {
         // If not recording down event

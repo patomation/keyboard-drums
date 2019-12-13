@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 
 import { Center, Button } from '@patomation/react-ui-components';
-import Keyboard from '@patomation/react-keyboard/src'
 import audioManager from './audioManager'
 import sounds from './sounds'
 import Controller from './components/Controller'
