@@ -81,12 +81,12 @@ const App = () => {
               flex: '1 1 auto',
               height: 'auto',
             }}
-            onDown={(id, key) => {
-              console.log('down', id, key);
+            onUp={(id, key) => {
+              console.log('up', id, key);
               audioManager.player.stop(key)
             }}
             onDown={(id, key) => {
-              console.log('up', id, key);
+              console.log('down', id, key);
               audioManager.player.play(key, {
                 voiceOverlap: false,
                 start: 0 })
