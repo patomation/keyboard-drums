@@ -55,8 +55,8 @@ const keyboard = (array) => {
   return [
     ...[keyboardButton({ title: '~', span: 2 })], ...array.slice(0, 12), ...[keyboardButton({ title: 'back', span: 4 })],
     ...[keyboardButton({ title: 'tab', span: 3 })], ...array.slice(12, 24), ...[keyboardButton({ title: '|', span: 3 })],
-    ...[keyboardButton({ title: 'cap', span: 4 })], ...array.slice(24, 35), ...[keyboardButton({ title: 'enter', span: 4 })],
-    ...[keyboardButton({ title: 'shift', span: 5 })], ...array.slice(36, 46), ...[keyboardButton({ title: 'shift', span: 5 })],
+    ...[keyboardButton({ title: 'cap', span: 4 })], ...array.slice(24, 34), ...[keyboardButton({ title: '', span: 2 })], ...[keyboardButton({ title: 'enter', span: 4 })],
+    ...[keyboardButton({ title: 'shift', span: 5 })], ...array.slice(36, 45), ...[keyboardButton({ title: '', span: 2 })], ...[keyboardButton({ title: 'shift', span: 5 })],
     // Bottom row with space bars and stuff for the look of it
     ...[keyboardButton({ title: 'ctrl', span: 3 })],
     ...[keyboardButton({ title: 'win', span: 3 })],

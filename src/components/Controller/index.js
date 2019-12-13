@@ -8,7 +8,7 @@ import modes from './modes.js'
 import hotkeys from './hotkeys.js'
 
 const Controller = ({
-  mode, names, colors, locked,
+  mode, names, colors, locked, keys,
   onDown, onUp,
   onDragStart, onDrag, onDrop,
   onDelete,
@@ -30,12 +30,15 @@ const Controller = ({
         col={{ 16: 4, 32: 8, 48: 12, 64: 16, keyboard: 30, '32portrait': 4 }[mode]}
         row={(mode === 'keyboard' ? 5 : mode === '32portrait' ? 8 : 4)}
         gap={'2px'}
-        style={{ flexGrow: 1 }}>
+        style={{ flexGrow: 1, width: '100%' }}>
 
         {modes[mode](Array(64).fill().map((_, index) =>
           <PadButton
             key={`pad_${index}`}
-            name={names ? names[index] : null}
+            name={(keys && keys[hotkeys[index]]) ? keys[hotkeys[index]].name : null}
+            // name={names ? names[index] : null}
+            enabledColor={(keys && keys[hotkeys[index]]) ? keys[hotkeys[index]].color : null}
+            // enabledColor={colors ? colors[index] : null}
             enabled={true}
             // enabled={names ? (!!names[index]) : false}
             locked={
@@ -63,7 +66,6 @@ const Controller = ({
             onDelete={() => {
               if (onDelete) onDelete(index)
             }}
-            enabledColor={colors ? colors[index] : null}
             onDrag={onDrag}
             onDrop={ e => {
               if (onDrop) {

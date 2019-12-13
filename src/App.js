@@ -7,9 +7,13 @@ import sounds from './sounds'
 import Controller from './components/Controller'
 import config from './config'
 
+
+let names = [], colors = []
 //Set up sounds
 Object.entries(config.keys).forEach(([key, item]) => {
   audioManager.add(key, item.sound)
+  names.push(item.name)
+  colors.push(item.color)
 })
 
 const App = () => {
@@ -38,60 +42,59 @@ const App = () => {
 
   return (
     <div
-      className='app'
-      style={{
-        display: 'flex',
-        flexFlow: 'column',
-        height: '100%',
-      }}>
-
-        <h2
+      className='app'>
+        <Center
+          // disabled={isPortrait}
           style={{
-            fontSize: '1rem',
-            textAlign: 'center',
-            // display: 'flex',
-            flex: '1 0 auto',
-            flexGrow: '0',
-            flexShrink: '1',
-            flexBasis: 'auto',
-          }}>{
-            "K E Y B O A R D D R U M S"
-          }</h2>
+            height: '100%'
+          }}
+          contentStyle={{
+            ...(isPortrait ? {
+              height: '100%',
+            }: null),
+            display: 'flex',
+            flexFlow: 'column',
+            ...( !isPortrait ? {
+              maxWidth: '800px',
+              // margin: '0 auto',
+              // maxHeight: '500px'
+              height: '400px'
+            } : null ),
+          }}>
 
-        <Controller
-          locked={true}
-          mode={ isPortrait ? '32portrait' : 'keyboard' }
-          style={{
-            flex: '1 1 auto',
-            height: 'auto'
-          }}
-          onDown={(id, key) => {
-            console.log('down', id, key);
-            audioManager.player.stop(key)
-          }}
-          onDown={(id, key) => {
-            console.log('up', id, key);
-            audioManager.player.play(key, {
-              voiceOverlap: false,
-              start: 0 })
-          }}
-          names={[
-            'chord',
-            'chord',
-            'chord',
-            'chord',
-            'chord',
-            'chord',
-            'chord',
-          ]}
-          colors={[
-            '#321325',
-            '#5f0f40',
-            '#9a031e',
-            '#cb793a',
-            '#fcdc4d'
-          ]}
-          />
+          <h2
+            style={{
+              fontSize: isPortrait ? '1rem' : '2rem',
+              textAlign: 'center',
+              // display: 'flex',
+              flex: '1 0 auto',
+              flexGrow: '0',
+              flexShrink: '1',
+              flexBasis: 'auto',
+            }}>{
+              "K E Y B O A R D D R U M S"
+            }</h2>
+
+          <Controller
+            locked={true}
+            mode={ isPortrait ? '32portrait' : 'keyboard' }
+            style={{
+              flex: '1 1 auto',
+              height: 'auto',
+            }}
+            onDown={(id, key) => {
+              console.log('down', id, key);
+              audioManager.player.stop(key)
+            }}
+            onDown={(id, key) => {
+              console.log('up', id, key);
+              audioManager.player.play(key, {
+                voiceOverlap: false,
+                start: 0 })
+            }}
+            keys={config.keys}
+            />
+        </Center>
 
     </div>
   );
