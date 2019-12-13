@@ -1,9 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 /* Verticall align */
-html{height: 100%;}
+html, body, #root, .app{ height: 100%; }
 body{
-  height: 100%;
   background: #49393b;
   color: #341c1c;
+  margin: 0;
+  padding: 0;
 }
 #index{height: 100%;}
 // .container{height: 100%;}
