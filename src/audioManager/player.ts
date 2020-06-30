@@ -1,5 +1,6 @@
 import context from './util/context'
 import sounds from './sounds'
+// import { loadPartialConfig } from '@babel/core'
 
 // MASTER FX
 const master = context.createGain()
@@ -64,7 +65,7 @@ export default {
       // Schedule stop id end time defined
       setTimeout(() => {
         fadeOut(gainNode, 0.2)
-      }, (end || sounds[key].buffer.duration) * 1000) // Convert sec to miliSec
+      }, (end || sounds[key].buffer.duration) * 1000) // Convert sec to milSec
     }
   },
 

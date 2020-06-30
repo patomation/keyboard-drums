@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@patomation/react-keyboard": "^1.0.3",
-    "@patomation/ui": "^2.0.1",
+    "@patomation/ui": "^2.0.2",
     "ismobilejs": "^1.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"

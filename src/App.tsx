@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { useEffect, useState, ReactElement } from 'react'
 
-import { Center } from '@patomation/ui'
+import { Center, Range } from '@patomation/ui'
 import audioManager from './audioManager'
+import useVolume from './audioManager/hooks/useVolume'
 import Controller from './components/Controller'
 import config from './config'
 
@@ -18,6 +19,7 @@ Object.entries(config.keys).forEach(([key, { sound, name, color }]) => {
 export default function App (): ReactElement {
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
+  const [volume, setVolume] = useVolume(0.35)
 
   const reportWindowSize = () => {
     setWidth(Math.max(document.documentElement.clientWidth, window.innerWidth || 0))
@@ -58,20 +60,45 @@ export default function App (): ReactElement {
             height: '400px'
           } : null)
         }}>
+        <div style={{
+          // display: 'flex'
+        }}>
+          <h2
+            style={{
+              fontSize: isPortrait ? '1rem' : '2rem',
+              textAlign: 'center',
+              // display: 'flex',
+              flex: '1 0 auto',
+              flexGrow: 0,
+              flexShrink: 1,
+              flexBasis: 'auto'
+            }}>{
+              'K E Y B O A R D D R U M S'
+            }
+          </h2>
+          <div style={{
+            // width: '100%'
+            overflow: 'hidden'
+          }}>
+            <span>Volume</span>
+            <Range
+              thumbColor='#49393b'
+              background='#341c1c'
+              style={{
+                margin: '0 auto'
+              }}
+              value={volume * 100}
+              min={0}
+              max={100}
+              onChange={(e) => {
+                // setVolume(e.target.value)
+                console.log(parseInt((e.target as HTMLTextAreaElement).value) / 100)
 
-        <h2
-          style={{
-            fontSize: isPortrait ? '1rem' : '2rem',
-            textAlign: 'center',
-            // display: 'flex',
-            flex: '1 0 auto',
-            flexGrow: 0,
-            flexShrink: 1,
-            flexBasis: 'auto'
-          }}>{
-            'K E Y B O A R D D R U M S'
-          }</h2>
-
+                setVolume(parseInt((e.target as HTMLTextAreaElement).value) / 100)
+              }}
+            />
+          </div>
+        </div>
         <Controller
           locked={true}
           mode={ isPortrait ? '32portrait' : 'keyboard' }
