@@ -1,20 +1,40 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { Grid } from '@patomation/react-ui-components'
-
+import * as React from 'react'
+import { useState, ReactElement } from 'react'
+import { Grid } from '@patomation/ui'
 import PadButton from '../PadButton'
 
-import modes from './modes.js'
-import hotkeys from './hotkeys.js'
+import modes from './modes'
+import hotkeys from './hotkeys'
+import { Keys } from '../../config'
 
-const Controller = ({
-  mode, names, colors, locked, keys,
+export interface Props {
+  mode?: string
+  locked?: boolean
+  keys?: Keys
+  onDown?: (index: number, key: string) => void
+  onUp?: (index: number, key: string) => void
+  onDragStart?: (index: number) => void
+  onDrag?: () => void
+  onDrop?: (e:{
+    source: string,
+    target: number,
+    items: string[]
+  }) => void,
+  onDelete?: (index: number) => void
+  onRecordStart?: (index: number) => void
+  onRecordStop?: (index: number) => void
+  style?: Record<string, unknown>
+}
+
+export default function Controller ({
+  mode = 'keyboard',
+  locked, keys,
   onDown, onUp,
   onDragStart, onDrag, onDrop,
   onDelete,
   onRecordStart, onRecordStop,
-  style,
-}) => {
+  style
+}: Props): ReactElement {
   const [dragId, setDragId] = useState(null)
   const [recId, setRecId] = useState(null)
 
@@ -32,7 +52,7 @@ const Controller = ({
         gap={'2px'}
         style={{ flexGrow: 1, width: '100%' }}>
 
-        {modes[mode](Array(64).fill().map((_, index) =>
+        {modes[mode](Array(64).fill(null).map((_, index) =>
           <PadButton
             key={`pad_${index}`}
             name={(keys && keys[hotkeys[index]]) ? keys[hotkeys[index]].name : null}
@@ -57,8 +77,8 @@ const Controller = ({
               if (onRecordStop) onRecordStop(index)
               setRecId(null) // reset rec id
             }}
-            onDown={() => { if(onDown){ onDown(index, hotkeys[index]) } }}
-            onUp={() => { if(onUp){ onUp(index, hotkeys[index]) } }}
+            onDown={() => { if (onDown) { onDown(index, hotkeys[index]) } }}
+            onUp={() => { if (onUp) { onUp(index, hotkeys[index]) } }}
             onDragStart={() => {
               if (onDragStart) onDragStart(index)
               setDragId(() => index)
@@ -73,7 +93,7 @@ const Controller = ({
                 const items = []
                 const data = e.dataTransfer.items
                 if (data.length > 0) {
-                  for (var i = 0; i < data.length; i++) {
+                  for (let i = 0; i < data.length; i++) {
                     items.push(data[i].getAsFile())
                   }
                 }
@@ -93,27 +113,3 @@ const Controller = ({
     </div>
   )
 }
-
-// Ensure mode prop type
-Controller.propTypes = {
-  mode: (props, propName, componentName) => {
-    if (!['16', '32', '48', '64', 'keyboard'].includes(props[propName])) {
-      return new Error(
-        'Invalid prop `' + propName + '` supplied to' +
-        ' `' + componentName + '`. Validation failed.')
-    }
-  },
-  names: PropTypes.array,
-  colors: PropTypes.array,
-  locked: PropTypes.bool,
-  onDown: PropTypes.func,
-  onUp: PropTypes.func,
-  onDragStart: PropTypes.func,
-  onDrag: PropTypes.func,
-  onDrop: PropTypes.func,
-  onDelete: PropTypes.func,
-  onRecordStart: PropTypes.func,
-  onRecordStop: PropTypes.func
-}
-
-export default Controller

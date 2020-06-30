@@ -1,7 +1,7 @@
 // Borrowed this code from somewhere:
 // source: https://www.russellgood.com/how-to-convert-audiobuffer-to-audio-file/
-// Ofcorse I modified the example to not require length prop and using arrow functions
-export default (audioBuffer) => {
+// Of course I modified the example to not require length prop and using arrow functions
+export default (audioBuffer: AudioBuffer): Blob => {
   const setUint16 = (data) => {
     view.setUint16(pos, data, true)
     pos += 2
@@ -12,13 +12,13 @@ export default (audioBuffer) => {
     pos += 4
   }
 
-  var numOfChan = audioBuffer.numberOfChannels
-  var length = audioBuffer.length * numOfChan * 2 + 44
-  var buffer = new ArrayBuffer(length)
-  var view = new DataView(buffer)
-  var channels = []; var i; var sample
-  var offset = 0
-  var pos = 0
+  const numOfChan = audioBuffer.numberOfChannels
+  const length = audioBuffer.length * numOfChan * 2 + 44
+  const buffer = new ArrayBuffer(length)
+  const view = new DataView(buffer)
+  const channels = []; let i; let sample
+  let offset = 0
+  let pos = 0
 
   // write WAVE header
   setUint32(0x46464952) // "RIFF"

@@ -1,5 +1,5 @@
-import context from './util/context.js'
-import sounds from './sounds.js'
+import context from './util/context'
+import sounds from './sounds'
 
 // MASTER FX
 const master = context.createGain()
@@ -9,7 +9,7 @@ const master = context.createGain()
 master.connect(context.destination) // Conects gain node to output
 // TODO connect additional gain nodes
 
-const createSouce = (buffer) => {
+const createSource = (buffer) => {
   const source = context.createBufferSource()
   source.buffer = buffer
   return source
@@ -35,10 +35,13 @@ const fadeAll = (key, time) => {
 }
 
 export default {
-  play: (key, { voiceOverlap, start, end }) => {
+  play: (key: string): void => {
+    const voiceOverlap = false
+    const start = 0
+    const end = null
     if (sounds[key]) {
       // Crete new source
-      const source = createSouce(sounds[key].buffer)
+      const source = createSource(sounds[key].buffer)
       source.currentTime = 0.5
       // VoiceOverlap false
       if (!voiceOverlap) {
@@ -60,21 +63,19 @@ export default {
       source.start(0, start || 0)
       // Schedule stop id end time defined
       setTimeout(() => {
-        console.log('fade out');
         fadeOut(gainNode, 0.2)
-      }, ( end || sounds[key].buffer.duration ) * 1000) // Convert sec to miliSec
-
+      }, (end || sounds[key].buffer.duration) * 1000) // Convert sec to miliSec
     }
   },
 
-  stop: (key) => {
+  stop: (key: string): void => {
     // NoteOn false
     if (sounds[key]) {
       fadeAll(key, 0.5)
     }
   },
 
-  volume: (value) => {
+  volume: (value: number): void => {
     master.gain.value = value
   }
 

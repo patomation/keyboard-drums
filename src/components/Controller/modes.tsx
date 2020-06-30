@@ -1,56 +1,54 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Button } from '@patomation/react-ui-components'
-import colorLuminance from '../../modules/colorLuminance.js'
+import * as React from 'react'
+import { ReactElement } from 'react'
+import { Button } from '@patomation/ui'
+import colorLuminance from '../../modules/colorLuminance'
 
-const mode16 = (array) => [
+const mode16 = (array: ReactElement[]): ReactElement[] => [
   ...array.slice(0, 16)
 ]
 
-const mode32 = (array) => [
+const mode32 = (array: ReactElement[]): ReactElement[] => [
   ...array.slice(0, 4), ...array.slice(16, 20),
   ...array.slice(4, 8), ...array.slice(20, 24),
   ...array.slice(8, 12), ...array.slice(24, 28),
   ...array.slice(12, 16), ...array.slice(28, 32)
 ]
 
-const mode48 = (array) => [
+const mode48 = (array: ReactElement[]): ReactElement[] => [
   ...array.slice(0, 4), ...array.slice(16, 20), ...array.slice(32, 36),
   ...array.slice(4, 8), ...array.slice(20, 24), ...array.slice(36, 40),
   ...array.slice(8, 12), ...array.slice(24, 28), ...array.slice(40, 44),
   ...array.slice(12, 16), ...array.slice(28, 32), ...array.slice(44, 48)
 ]
 
-const mode64 = (array) => [
+const mode64 = (array: ReactElement[]): ReactElement[] => [
   ...array.slice(0, 4), ...array.slice(16, 20), ...array.slice(32, 36), ...array.slice(48, 52),
   ...array.slice(4, 8), ...array.slice(20, 24), ...array.slice(36, 40), ...array.slice(52, 56),
   ...array.slice(8, 12), ...array.slice(24, 28), ...array.slice(40, 44), ...array.slice(56, 60),
   ...array.slice(12, 16), ...array.slice(28, 32), ...array.slice(44, 48), ...array.slice(60, 64)
 ]
 
-const keyboardButton = ({ title, span }) =>
-  <Button
-    key={`extrakey_${Math.random()}`}
-    title={title}
-    style={{
-      gridColumn: `auto / span ${span || 1}`,
-      opacity: 0.5,
-      border: `1px solid ${colorLuminance('#353531', -0.5)}`,
-      boxShadow: `0px 6px 0px ${colorLuminance('#353531', -0.5)}`,
-      marginBottom: '6px'
-    }}
-    disabledStyle={{
-      background: colorLuminance('#353531', -0.2),
-      color: 'rgba(255,255,255,0.3)'
-    }}
-    disabled={true}/>
-
-keyboardButton.propTypes = {
-  title: PropTypes.string,
-  span: PropTypes.number
+function keyboardButton ({ title, span }: { title: string, span: number}) {
+  return (
+    <Button
+      key={`blank-key_${Math.random()}`}
+      title={title}
+      style={{
+        gridColumn: `auto / span ${span || 1}`,
+        opacity: 0.5,
+        border: `1px solid ${colorLuminance('#353531', -0.5)}`,
+        boxShadow: `0px 6px 0px ${colorLuminance('#353531', -0.5)}`,
+        marginBottom: '6px'
+      }}
+      disabledStyle={{
+        background: colorLuminance('#353531', -0.2),
+        color: 'rgba(255,255,255,0.3)'
+      }}
+      disabled={true}/>
+  )
 }
 
-const keyboard = (array) => {
+const keyboard = (array: ReactElement[]): ReactElement[] => {
   array = mode48(array)
   return [
     ...[keyboardButton({ title: '~', span: 2 })], ...array.slice(0, 12), ...[keyboardButton({ title: 'back', span: 4 })],

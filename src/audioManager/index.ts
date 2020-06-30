@@ -1,34 +1,33 @@
-import player from './player.js'
+import player from './player'
 
 // Utilities
-import urlToAudioBuffer from './util/urlToAudioBuffer.js'
+import urlToAudioBuffer from './util/urlToAudioBuffer'
 
 // Hooks
-import useBlob from './hooks/useBlob.js'
+import useBlob from './hooks/useBlob'
 // import useRecording from './hooks/useRecording.js'
-import useVolume from './hooks/useVolume.js'
+import useVolume from './hooks/useVolume'
 
-import sounds from './sounds.js'
-import Sound from './Sound.js'
+import sounds from './sounds'
+import Sound from './Sound'
 
 export default {
   // Storage management
-  add: (key, url) => {
-    console.log('ADD', key, url);
+  add: (key: string, url: string): void => {
     if (url !== undefined) {
       urlToAudioBuffer(url)
-        .then(buffer => {
+        .then((buffer: AudioBuffer) => {
           sounds[key] = new Sound(buffer) // Store
         })
     }
   },
-  remove: (key) => {
+  remove: (key: string): void => {
     sounds[key] = null
   },
-  copy: (source, target) => {
+  copy: (source: string, target: string): void => {
     sounds[target] = sounds[source]
   },
-  swap: (source, target) => {
+  swap: (source: string, target: string): void => {
     const targetSound = sounds[target]
     sounds[target] = sounds[source]
     sounds[source] = targetSound

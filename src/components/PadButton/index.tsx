@@ -1,22 +1,50 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
+import { useState, useEffect, ReactElement } from 'react'
 
-import { Button, IconButton, DragDrop } from '@patomation/react-ui-components'
+import { Button, IconButton, DragDrop } from '@patomation/ui'
 import useToggle from '@patomation/usetoggle'
 import setHotkey from '@patomation/hotkey'
-import colorLuminance from '../../modules/colorLuminance.js'
+import colorLuminance from '../../modules/colorLuminance'
 
-const PadButton = ({
-  style,
+export interface Props {
+  name?: string
+  number?: number
+  hotkey?: string
+  enabled?: boolean
+  enabledColor?: string
+  locked?: boolean
+  onDelete?: () => void
+  onToggleSustain?: () => void
+  onDragStart?: () => void
+  onDrop?: (e: {
+    dataTransfer:{
+      items: {
+        getAsFile: () => string
+      }[]
+    }
+  }) => void
+  onDrag?: () => void
+  // onDragEnd?: () => void // TODO: disabled for now
+  onDown?: () => void
+  onUp?: () => void
+  onRecordStart?: () => void
+  onRecordStop?: () => void
+  draggable?: boolean
+  style?: Record<string, unknown>
+}
+
+export default function PadButton ({
   name, number, hotkey,
   enabled, enabledColor,
   locked,
-  onDelete, onToggleSustain,
-  onDragStart, onDrop, onDrag, onDragEnd,
+  onDelete,
+  onDragStart, onDrop, onDrag,
+  // onDragEnd,
   onDown, onUp,
   onRecordStart, onRecordStop,
-  draggable
-}) => {
+  draggable,
+  style
+}: Props): ReactElement {
   const [over, setOver] = useState(false)
   const [active, setActive] = useState(false)
   const [rec, toggleRec] = useToggle(false)
@@ -25,15 +53,15 @@ const PadButton = ({
     if (hotkey) {
       setHotkey(hotkey)
         .down(() => {
-          setActive(_ => true)
+          setActive(() => true)
           if (onDown && enabled) onDown()
         })
         .up(() => {
-          setActive(_ => false)
+          setActive(() => false)
           if (onUp && enabled) onUp()
         })
     }
-    // Unmount
+    // Un mount
     return () => {
       setHotkey.remove(hotkey)
     }
@@ -43,7 +71,7 @@ const PadButton = ({
     <DragDrop
       className={'pad-button'}
       draggable={!!draggable}
-      onDragStart={(e) => {
+      onDragStart={() => {
         if (onDragStart) onDragStart()
       }}
       onDrag={onDrag}
@@ -53,7 +81,7 @@ const PadButton = ({
       onDragLeave={() => {
         setOver(false)
       }}
-      onDragEnd={onDragEnd}
+      // onDragEnd={onDragEnd}
       onDrop={(e) => {
         if (onDrop) onDrop(e)
         setOver(false)
@@ -107,14 +135,14 @@ const PadButton = ({
         // If not recording down event
           if (!rec && onDown && enabled) {
             onDown()
-            // Stop recording if recodring
+            // Stop recording if recording
           } else if (rec) {
             onRecordStop()
             toggleRec(false)
           }
         }}
         onUp={onUp}
-        onHover={(hovering) => {
+        onHover={(/* hovering */) => {
         // if(!hovering) pad.pause()
         }}
         style={{
@@ -142,7 +170,7 @@ const PadButton = ({
           } : null)
         }}
         hoverStyle={{
-          filter: 'brightness(85%)' // 100% is baseline 85% is 15% daker
+          filter: 'brightness(85%)' // 100% is baseline 85% is 15% darker
         }}
         enabledStyle={{
           background: colorLuminance(enabledColor || '#016fb9', 0),
@@ -151,7 +179,7 @@ const PadButton = ({
           color: 'rgba(255,255,255,0.4)'
         }}
         activeStyle={{
-          filter: 'brightness(130%)',
+          filter: 'brightness(130%)'
           // color: 'rgba(255,255,255,0.4)'
         }}
       >
@@ -173,26 +201,3 @@ const PadButton = ({
     </DragDrop>
   )
 }
-
-PadButton.propTypes = {
-  style: PropTypes.object,
-  name: PropTypes.string,
-  number: PropTypes.number,
-  hotkey: PropTypes.string,
-  enabled: PropTypes.bool,
-  enabledColor: PropTypes.string,
-  locked: PropTypes.bool,
-  onDelete: PropTypes.func,
-  onToggleSustain: PropTypes.func,
-  onDragStart: PropTypes.func,
-  onDrop: PropTypes.func,
-  onDrag: PropTypes.func,
-  onDragEnd: PropTypes.func,
-  onDown: PropTypes.func,
-  onUp: PropTypes.func,
-  onRecordStart: PropTypes.func,
-  onRecordStop: PropTypes.func,
-  draggable: PropTypes.bool
-}
-
-export default PadButton

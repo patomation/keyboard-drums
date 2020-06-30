@@ -1,4 +1,4 @@
-export default (hex, lum) => {
+export default (hex: string, lum: number): string => {
   // validate hex string
   hex = String(hex).replace(/[^0-9a-f]/gi, '')
   if (hex.length < 6) {
@@ -7,7 +7,9 @@ export default (hex, lum) => {
   lum = lum || 0
 
   // convert to decimal and change luminosity
-  var rgb = '#'; var c; var i
+  let rgb = '#'
+  let c
+  let i
   for (i = 0; i < 3; i++) {
     c = parseInt(hex.substr(i * 2, 2), 16)
     c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16)
