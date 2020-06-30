@@ -1,1 +1,27 @@
-
+* {
+  margin: 0;
+  padding: 0;
+}
+/* Verticall align */
+html, body, #root, .app{ height: 100%; }
+body{
+  background: #49393b;
+  color: #341c1c;
+  margin: 0;
+  padding: 0;
+}
+#index{height: 100%;}
+// .container{height: 100%;}
+// .app-container{height: 100%;}
+.container{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+h2 {
+  text-align: center;
+  font-size: 2em;
+  padding: 1rem 0;
+  margin: 0;
+  font-family: "Arial";
+}
